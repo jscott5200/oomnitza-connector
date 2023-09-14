@@ -64,7 +64,7 @@ class Connector(AssetsConnector):
         'username':                 {'order': 3, 'example': 'change-me'},
         'password':                 {'order': 4, 'example': 'change-me'},
         'authentication':           {'order': 5, 'default': "SQL Server", 'choices': ("SQL Server", "Windows")},
-        'trust_server_certificate': {'order': 6, 'default': "yes", 'choices': ("yes", "no")},
+        'trust_server_certificate': {'order': 6, 'default': "no", 'choices': ("yes", "no")},
         'driver':                   {'order': 7, 'default': ''},
         'encrypt':                  {'order': 8, 'default': "yes", 'choices': ("yes", "no")},
     }
