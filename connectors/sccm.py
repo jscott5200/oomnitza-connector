@@ -59,12 +59,14 @@ SELECT DisplayName0 AS 'name',
 class Connector(AssetsConnector):
     MappingName = 'SCCM'
     Settings = {
-        'server':            {'order': 1, 'example': 'server.example.com'},
-        'database':          {'order': 2, 'default': 'CM_DCT'},
-        'username':          {'order': 3, 'example': 'change-me'},
-        'password':          {'order': 4, 'example': 'change-me'},
-        'authentication':    {'order': 5, 'default': "SQL Server", 'choices': ("SQL Server", "Windows")},
-        'driver':            {'order': 7, 'default': ''},
+        'server':                   {'order': 1, 'example': 'server.example.com'},
+        'database':                 {'order': 2, 'default': 'CM_DCT'},
+        'username':                 {'order': 3, 'example': 'change-me'},
+        'password':                 {'order': 4, 'example': 'change-me'},
+        'authentication':           {'order': 5, 'default': "SQL Server", 'choices': ("SQL Server", "Windows")},
+        'trust_server_certificate': {'order': 6, 'default': "no", 'choices': ("yes", "no")},
+        'driver':                   {'order': 7, 'default': ''},
+        'encrypt':                  {'order': 8, 'default': "yes", 'choices': ("yes", "no")},
     }
 
     DefaultConverters = {
@@ -125,6 +127,8 @@ class Connector(AssetsConnector):
             # NOTE: driver string has to be enclosed with curvy brackets like "{SQL Server}" or "{ODBC Driver 17 for SQL Server}",
             "server": self.settings['server'],
             "database": self.settings['database'],
+            "trust_server_certificate": self.settings['trust_server_certificate'],
+            "encrypt": self.settings['encrypt'],
         }
         if self.settings['authentication'] == "Windows":
             connect_args['trusted_connection'] = "yes"
